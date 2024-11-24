@@ -1,7 +1,6 @@
 package estruturas;
 
-import estrutura.ArvoreAVL;
-import estrutura.ArvoreBinaria;
+import estruturaBase.ArvoreBinaria;
 
 public class ArvoresBinarias {
 

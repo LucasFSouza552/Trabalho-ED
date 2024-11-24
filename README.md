@@ -1,18 +1,37 @@
-## Getting Started
+# Análise de Desempenho de Estruturas de Dados em Java
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Este projeto faz a comparação de três tipos de estruturas de dados (vetores, árvores binárias e árvores AVL), utilizando operações de inserção, busca e ordenação (Quicksort e BubbleSort). Durante as operações, analisa o tempo de cada execução. O objetivo é entender a eficiência de cada uma das estruturas com cenários e dados diferentes.
 
-## Folder Structure
+## Descrição dos Arquivos
 
-The workspace contains two folders by default, where:
+- **`bin/`**: Pasta onde os arquivos compilados do projeto são armazenados.
+- **`src/estruturaBase/`**: Contém as implementações básicas das estruturas de dados, como árvores e vetores.
+  - `ArvoreAVL.java`: Implementação de uma árvore AVL.
+  - `ArvoreBinaria.java`: Implementação de uma árvore binária.
+  - `Vetor.java`: Implementação da estrutura de dados Vetor.
+- **`src/estruturas/`**: Implementações específicas de árvores e vetores para diferentes tamanhos de dados (100, 1000, 10000 elementos).
+  - `ArvoresAVL.java`, `ArvoresBinarias.java`, `Vetores.java`: Implementações para diferentes tamanhos de dados.
+- **`src/interfaces/`**: Contém interfaces que definem contratos para as estruturas de dados.
+  - `Estrutura.java`: Interface para as estruturas de dados.
+- **`src/nos/`**: Contém as representações dos nós para as árvores binária e AVL.
+  - `NoAVL.java`: Nó para a árvore AVL.
+  - `NoBinaria.java`: Nó para a árvore binária.
+- **`src/utils/`**: Contém implementações utilitárias como algoritmos de ordenação e busca.
+  - `BinarySearch.java`: Algoritmo de busca binária.
+  - `BubbleSort.java`: Algoritmo de ordenação BubbleSort.
+  - `QuickSort.java`: Algoritmo de ordenação QuickSort.
+  - `TempoGerenciador.java`: Classe abstrata para armazenamento dos tempos das operações.
+- **`src/App.java`**: Classe principal do projeto que inicializa e executa o código.
+- **`README.md`**: Arquivo de documentação do projeto.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Como Executar o Projeto
+Para rodar o projeto, basta compilar o código e executar a classe App.java. Se estiver usando uma IDE, clique em `Run` ou `Executar` na classe App.java e o programa será iniciado.
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+## Dependências
+Este projeto requer o Java 23 ou superior para ser executado corretamente. A versão do Java usada neste projeto é:
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+Java 23.0.1 (Lançado em 15 de outubro de 2024)
 
-## Dependency Management
+## Criador do Projeto
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+<a href="https://github.com/LucasFSouza552">Lucas Felipe de Souza</a>

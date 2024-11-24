@@ -32,7 +32,7 @@ public class BubbleSort {
         int n = bubbleSort.length;
         boolean parar;
 
-        long StartTime = Timer.getTime();
+        long StartTime = getTime();
         for (int i = 0; i < n - 1; i++) {
             parar = false;
 
@@ -50,7 +50,11 @@ public class BubbleSort {
                 break;
             }
         }
-        return Timer.getTime() - StartTime;
+        return getTime() - StartTime;
+    }
+
+    private static long getTime() {
+        return System.nanoTime();
     }
 
 }

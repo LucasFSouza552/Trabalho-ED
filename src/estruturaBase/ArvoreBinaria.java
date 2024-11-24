@@ -1,7 +1,7 @@
-package estrutura;
+package estruturaBase;
 
-import estruturas.TempoGerenciador;
 import interfaces.Estrutura;
+import utils.TempoGerenciador;
 
 public class ArvoreBinaria extends TempoGerenciador implements Estrutura {
 
@@ -57,7 +57,7 @@ public class ArvoreBinaria extends TempoGerenciador implements Estrutura {
     @Override
     public void buscarPrimeiroElemento() {
         long StartTime = getTime();
-        int primeiro = buscarPorIndice(0);
+        buscarPorIndice(0);
         long tempo = getTime() - StartTime;
         addTempo(tempo, tiposTempos.BUSCAR_PRIMEIRO_ELEMENTO);
     }
@@ -82,7 +82,7 @@ public class ArvoreBinaria extends TempoGerenciador implements Estrutura {
     @Override
     public void buscarUltimoElemento() {
         long StartTime = getTime();
-        int ultimo = buscarPorIndice(tamanho - 1);
+        buscarPorIndice(tamanho - 1);
         long tempo = getTime() - StartTime;
         addTempo(tempo, tiposTempos.BUSCAR_ULTIMO_ELEMENTO);
     }
@@ -90,7 +90,7 @@ public class ArvoreBinaria extends TempoGerenciador implements Estrutura {
     @Override
     public void buscarMeioElemento() {
         long StartTime = getTime();
-        int meio = buscarPorIndice(tamanho / 2);
+        buscarPorIndice(tamanho / 2);
         long tempo = getTime() - StartTime;
         addTempo(tempo, tiposTempos.BUSCAR_MEIO_ELEMENTO);
     }
@@ -98,7 +98,7 @@ public class ArvoreBinaria extends TempoGerenciador implements Estrutura {
     @Override
     public void buscarValorInexistente() {
         long StartTime = getTime();
-        int inexistente = buscarPorIndice(tamanho + 1);
+        buscarPorIndice(tamanho + 1);
         long tempo = getTime() - StartTime;
         addTempo(tempo, tiposTempos.BUSCAR_VALOR_INEXISTENTE);
     }
@@ -107,7 +107,7 @@ public class ArvoreBinaria extends TempoGerenciador implements Estrutura {
     public void buscarValorAleatorio() {
         long StartTime = getTime();
         int r = (int) (Math.random() * 100);
-        int aleatorio = buscarPorIndice(r);
+        buscarPorIndice(r);
         long tempo = getTime() - StartTime;
         addTempo(tempo, tiposTempos.BUSCAR_VALOR_ALEATORIO);
     }
@@ -127,24 +127,6 @@ public class ArvoreBinaria extends TempoGerenciador implements Estrutura {
             raiz.right = inserirRecursivo(raiz.right, valor);
         }
         return raiz;
-    }
-
-    public void buscarElementos() {
-        for (int i = 0; i < 5; i++) {
-            // tempoPrimeiroElemento += buscarPrimeiroElemento();
-            // tempoUltimoElemento += buscarUltimoElemento();
-            // tempoMeioElemento += buscarMeioElemento();
-            // tempoElementoInexistente += buscarValorInexistente();
-            // tempoElementoAleatorio += buscarValorAleatorio();
-        }
-
-        // System.out.println("Tempo para preencher: " + tempoParaPreencher / 5);
-        // System.out.println("Primeiro Elemento: " + tempoPrimeiroElemento / 5);
-        // System.out.println("Ultimo Elemento: " + tempoUltimoElemento / 5);
-        // System.out.println("Meio Elemento: " + tempoMeioElemento / 5);
-        // System.out.println("Elemento Inexistente: " + tempoElementoInexistente / 5);
-        // System.out.println("Elemento Aleatorio: " + tempoElementoAleatorio / 5);
-        // System.out.println();
     }
 
     public void inorder() {

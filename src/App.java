@@ -5,20 +5,25 @@ import estruturas.Vetores;
 public class App {
 
     public static void main(String[] args) throws Exception {
-
         new App();
     }
 
     public App() {
+        // Testa a classe Vetores com diferentes tipos de preenchimento
         testarVetores();
         System.out.println("");
+        // Testa a classe ArvoresBinaria com diferentes tipos de preenchimento
         testarArvoreBinaria();
         System.out.println("");
-
+        // Testa a classe ArvoresAVL com diferentes tipos de preenchimento
         testarArvoreAVL();
     }
 
+    /**
+     * Testa a classe Vetores com diferentes tipos de preenchimento
+     */
     private void testarVetores() {
+        // Vetores ordenados
         Vetores vetoresOrdenados = new Vetores();
         vetoresOrdenados.preencherOrdenados();
         vetoresOrdenados.buscarElementos();
@@ -26,6 +31,11 @@ public class App {
         vetoresOrdenados.quickSort();
         vetoresOrdenados.bubbleSort();
 
+        System.out.println("Vetores ordenados: ");
+        vetoresOrdenados.mostrarTempos();
+        System.out.println("");
+
+        // Vetores invertidos
         Vetores vetoresInverso = new Vetores();
         vetoresInverso.preencherInverso();
         vetoresInverso.buscarElementos();
@@ -33,26 +43,28 @@ public class App {
         vetoresInverso.quickSort();
         vetoresInverso.bubbleSort();
 
+        System.out.println("Vetores invertidos: ");
+        vetoresInverso.mostrarTempos();
+        System.out.println("");
+
+        // Vetores aleatorios
         Vetores vetoresAleatorio = new Vetores();
         vetoresAleatorio.preencherAleatorio();
         vetoresAleatorio.buscarElementos();
         vetoresAleatorio.buscaBinaria();
         vetoresAleatorio.quickSort();
 
-        // Exibir tempos
-        System.out.println("Vetores ordenados: ");
-        vetoresOrdenados.mostrarTempos();
-        System.out.println("");
-        System.out.println("Vetores invertidos: ");
-        vetoresInverso.mostrarTempos();
-        System.out.println("");
         vetoresAleatorio.bubbleSort();
         System.out.println("Vetores aleatorios: ");
         vetoresAleatorio.mostrarTempos();
         System.out.println("");
     }
 
+    /**
+     * Testa a classe ArvoresBinaria com diferentes tipos de preenchimento
+     */
     private void testarArvoreBinaria() {
+        // Árvore Binaria ordenada
         ArvoresBinarias arvoreBinariaOrdenada = new ArvoresBinarias();
         arvoreBinariaOrdenada.preencherOrdenado();
         arvoreBinariaOrdenada.buscarElementos();
@@ -60,6 +72,7 @@ public class App {
         arvoreBinariaOrdenada.mostrarTempos();
         System.out.println("");
 
+        // Árvore Binaria invertida
         ArvoresBinarias arvoreBinariaInversa = new ArvoresBinarias();
         arvoreBinariaInversa.preencherInverso();
         arvoreBinariaInversa.buscarElementos();
@@ -67,6 +80,7 @@ public class App {
         arvoreBinariaInversa.mostrarTempos();
         System.out.println("");
 
+        // Árvore Binaria aleatoria
         ArvoresBinarias arvoreBinariaAleatorio = new ArvoresBinarias();
         arvoreBinariaAleatorio.preencherAleatorio();
         arvoreBinariaAleatorio.buscarElementos();
@@ -75,7 +89,11 @@ public class App {
         System.out.println("");
     }
 
+    /**
+     * Testa a classe ArvoresAVL com diferentes tipos de preenchimento
+     */
     private void testarArvoreAVL() {
+        // Árvore AVL ordenada
         ArvoresAVL arvoresAvlOrdenada = new ArvoresAVL();
         arvoresAvlOrdenada.preencherOrdenado();
         arvoresAvlOrdenada.buscarElementos();
@@ -83,6 +101,7 @@ public class App {
         arvoresAvlOrdenada.mostrarTempos();
         System.out.println("");
 
+        // Árvore AVL invertida
         ArvoresAVL arvoresAvlInversa = new ArvoresAVL();
         arvoresAvlInversa.preencherInverso();
         arvoresAvlInversa.buscarElementos();
@@ -90,6 +109,7 @@ public class App {
         arvoresAvlInversa.mostrarTempos();
         System.out.println("");
 
+        // Árvore AVL aleatoria
         ArvoresAVL arvoresAvlAleatorio = new ArvoresAVL();
         arvoresAvlAleatorio.preencherAleatorio();
         arvoresAvlAleatorio.buscarElementos();

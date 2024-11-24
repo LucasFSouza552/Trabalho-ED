@@ -1,6 +1,6 @@
 package estruturas;
 
-import estrutura.Vetor;
+import estruturaBase.Vetor;
 
 public class Vetores {
 

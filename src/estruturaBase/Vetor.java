@@ -1,20 +1,17 @@
-package estrutura;
+package estruturaBase;
 
-import estruturas.TempoGerenciador;
 import interfaces.Estrutura;
 import utils.BinarySearch;
 import utils.BubbleSort;
 import utils.QuickSort;
+import utils.TempoGerenciador;
 
 public class Vetor extends TempoGerenciador implements Estrutura {
     private final int INEXISTENTE = -1;
 
     private int[] vetor;
 
-    private BubbleSort bubbleSort;
-
     public Vetor(int size) {
-        bubbleSort = new BubbleSort();
         this.vetor = new int[size];
     }
 

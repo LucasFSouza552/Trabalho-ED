@@ -1,6 +1,6 @@
-package estruturas;
+package utils;
 
-public class TempoGerenciador {
+public abstract class TempoGerenciador {
     public enum tiposTempos {
         PREENCHER,
         // Vetor

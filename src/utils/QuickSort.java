@@ -10,9 +10,9 @@ public class QuickSort {
 
     public static long sortTime(int[] arr) {
         int[] quick = arr.clone();
-        long StartTime = Timer.getTime();
+        long StartTime = getTime();
         sort(quick, 0, quick.length - 1);
-        return Timer.getTime() - StartTime;
+        return getTime() - StartTime;
     }
 
     private static void sort(int[] arr, int inicio, int fim) {
@@ -47,16 +47,7 @@ public class QuickSort {
         }
     }
 
-    public static void main(String[] args) {
-        // Testar QuickSort
-        
-        int[] array = new int[100];
-        for (int i = 0; i < array.length; i++) {
-            array[i] = (int) (Math.random() * 100);
-        }
-        sort(array);
-        for (int i = 0; i < array.length; i++) {
-            System.out.print(array[i] + " ");
-        }
+    private static long getTime() {
+        return System.nanoTime();
     }
 }

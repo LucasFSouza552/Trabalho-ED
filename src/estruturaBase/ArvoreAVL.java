@@ -1,39 +1,13 @@
-package estrutura;
+package estruturaBase;
 
-import estruturas.TempoGerenciador;
 import interfaces.Estrutura;
+import nos.NoAVL;
+import utils.TempoGerenciador;
 
 public class ArvoreAVL extends TempoGerenciador implements Estrutura {
     private static final int INEXISTENTE = -1;
 
-    class No {
-        int valor;
-        int altura;
-        No left, right;
-
-        public No(int valor) {
-            this.valor = valor;
-            left = right = null;
-            altura = 1;
-        }
-
-        public int getAltura() {
-            return altura;
-        }
-
-        public int getBalance() {
-            int leftaltura = (left == null) ? 0 : left.altura;
-            int rightaltura = (right == null) ? 0 : right.altura;
-            return leftaltura - rightaltura;
-        }
-
-        public void setAltura(int altura) {
-            this.altura = altura;
-        }
-
-    }
-
-    private No raiz;
+    private NoAVL raiz;
     private int tamanho;
 
     public ArvoreAVL(int tamanho) {
@@ -45,38 +19,38 @@ public class ArvoreAVL extends TempoGerenciador implements Estrutura {
         raiz = inserirRecursiva(raiz, valor);
     }
 
-    private No inserirRecursiva(No raiz, int valor) {
+    private NoAVL inserirRecursiva(NoAVL raiz, int valor) {
         if (raiz == null) {
-            return new No(valor);
+            return new NoAVL(valor);
         }
 
-        if (valor < raiz.valor) {
-            raiz.left = inserirRecursiva(raiz.left, valor);
-        } else if (valor > raiz.valor) {
-            raiz.right = inserirRecursiva(raiz.right, valor);
+        if (valor < raiz.getValor()) {
+            raiz.setLeft(inserirRecursiva(raiz.getLeft(), valor));
+        } else if (valor > raiz.getValor()) {
+            raiz.setRight(inserirRecursiva(raiz.getRight(), valor));
         } else {
             return raiz;
         }
 
-        raiz.altura = 1 + Math.max(getAltura(raiz.left), getAltura(raiz.right));
+        raiz.setAltura(1 + Math.max(getAltura(raiz.getLeft()), getAltura(raiz.getRight())));
 
         int balance = raiz.getBalance();
 
-        if (balance > 1 && valor < raiz.left.valor) {
+        if (balance > 1 && valor < raiz.getLeft().getValor()) {
             return rotacaoDireita(raiz);
         }
 
-        if (balance < -1 && valor > raiz.right.valor) {
+        if (balance < -1 && valor > raiz.getRight().getValor()) {
             return rotacaoEsquerda(raiz);
         }
 
-        if (balance > 1 && valor > raiz.left.valor) {
-            raiz.left = rotacaoEsquerda(raiz.left);
+        if (balance > 1 && valor > raiz.getLeft().getValor()) {
+            raiz.setLeft(rotacaoEsquerda(raiz.getLeft()));
             return rotacaoDireita(raiz);
         }
 
-        if (balance < -1 && valor < raiz.right.valor) {
-            raiz.right = rotacaoDireita(raiz.right);
+        if (balance < -1 && valor < raiz.getRight().getValor()) {
+            raiz.setRight(rotacaoDireita(raiz.getRight()));
             return rotacaoEsquerda(raiz);
         }
 
@@ -88,45 +62,45 @@ public class ArvoreAVL extends TempoGerenciador implements Estrutura {
         System.out.println();
     }
 
-    private void inorderRec(No node) {
+    private void inorderRec(NoAVL node) {
         if (node != null) {
-            inorderRec(node.left);
-            System.out.print(node.valor + " ");
-            inorderRec(node.right);
+            inorderRec(node.getLeft());
+            System.out.print(node.getValor() + " ");
+            inorderRec(node.getRight());
         }
     }
 
-    private No rotacaoEsquerda(No x) {
-        No y = x.right;
-        No T2 = y.left;
+    private NoAVL rotacaoEsquerda(NoAVL x) {
+        NoAVL y = x.getRight();
+        NoAVL T2 = y.getLeft();
 
-        y.left = x;
-        x.right = T2;
+        y.setLeft(x);
+        x.setRight(T2);
 
-        x.altura = Math.max(getAltura(x.left), getAltura(x.right)) + 1;
-        y.altura = Math.max(getAltura(y.left), getAltura(y.right)) + 1;
-
-        return y;
-    }
-
-    private No rotacaoDireita(No x) {
-        No y = x.left;
-        No T3 = y.right;
-
-        y.right = x;
-        x.left = T3;
-
-        x.altura = Math.max(getAltura(x.left), getAltura(x.right)) + 1;
-        y.altura = Math.max(getAltura(y.left), getAltura(y.right)) + 1;
+        x.setAltura(Math.max(getAltura(x.getLeft()), getAltura(x.getRight())) + 1);
+        y.setAltura(Math.max(getAltura(y.getLeft()), getAltura(y.getRight())) + 1);
 
         return y;
     }
 
-    private int getAltura(No no) {
+    private NoAVL rotacaoDireita(NoAVL x) {
+        NoAVL y = x.getLeft();
+        NoAVL T3 = y.getRight();
+
+        y.setRight(x);
+        x.setLeft(T3);
+
+        x.setAltura(Math.max(getAltura(x.getLeft()), getAltura(x.getRight())) + 1);
+        y.setAltura(Math.max(getAltura(y.getLeft()), getAltura(y.getRight())) + 1);
+
+        return y;
+    }
+
+    private int getAltura(NoAVL no) {
         if (no == null) {
             return 0;
         }
-        return no.altura;
+        return no.getAltura();
     }
 
     public int getTamanho() {
@@ -165,22 +139,35 @@ public class ArvoreAVL extends TempoGerenciador implements Estrutura {
 
     @Override
     public int buscarElemento(int elemento) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarElemento'");
+        return buscarRecursivo(raiz, elemento);
+    }
+
+    public int buscarRecursivo(NoAVL raiz, int elemento) {
+        if (raiz == null) {
+            return INEXISTENTE;
+        }
+        if (raiz.getValor() == elemento) {
+            return raiz.getValor();
+        }
+        if (elemento < raiz.getValor()) {
+            return buscarRecursivo(raiz.getLeft(), elemento);
+        } else {
+            return buscarRecursivo(raiz.getRight(), elemento);
+        }
     }
 
     @Override
     public int buscarPorIndice(int index) {
-        No atual = raiz;
+        NoAVL atual = raiz;
         int contador = 0;
         while (atual != null) {
             if (contador == index) {
-                return atual.valor;
+                return atual.getValor();
             }
             if (index < contador) {
-                atual = atual.left;
+                atual = atual.getLeft();
             } else {
-                atual = atual.right;
+                atual = atual.getRight();
                 contador++;
             }
         }
@@ -190,7 +177,7 @@ public class ArvoreAVL extends TempoGerenciador implements Estrutura {
     @Override
     public void buscarPrimeiroElemento() {
         long StartTime = getTime();
-        int primeiro = buscarPorIndice(0);
+        buscarPorIndice(0);
         long tempo = getTime() - StartTime;
         addTempo(tempo, tiposTempos.BUSCAR_PRIMEIRO_ELEMENTO);
     }
@@ -198,7 +185,7 @@ public class ArvoreAVL extends TempoGerenciador implements Estrutura {
     @Override
     public void buscarUltimoElemento() {
         long StartTime = getTime();
-        int ultimo = buscarPorIndice(tamanho - 1);
+        buscarPorIndice(tamanho - 1);
         long tempo = getTime() - StartTime;
         addTempo(tempo, tiposTempos.BUSCAR_ULTIMO_ELEMENTO);
     }
@@ -206,7 +193,7 @@ public class ArvoreAVL extends TempoGerenciador implements Estrutura {
     @Override
     public void buscarMeioElemento() {
         long StartTime = getTime();
-        int meio = buscarPorIndice(tamanho / 2);
+        buscarPorIndice(tamanho / 2);
         long tempo = getTime() - StartTime;
         addTempo(tempo, tiposTempos.BUSCAR_MEIO_ELEMENTO);
     }
@@ -214,7 +201,7 @@ public class ArvoreAVL extends TempoGerenciador implements Estrutura {
     @Override
     public void buscarValorInexistente() {
         long StartTime = getTime();
-        int inexistente = buscarPorIndice(tamanho + 1);
+        buscarPorIndice(tamanho + 1);
         long tempo = getTime() - StartTime;
         addTempo(tempo, tiposTempos.BUSCAR_VALOR_INEXISTENTE);
     }
@@ -223,6 +210,7 @@ public class ArvoreAVL extends TempoGerenciador implements Estrutura {
     public void buscarValorAleatorio() {
         long StartTime = getTime();
         int aleatorio = (int) (Math.random() * tamanho);
+        buscarPorIndice(aleatorio);
         long tempo = getTime() - StartTime;
         addTempo(tempo, tiposTempos.BUSCAR_VALOR_ALEATORIO);
     }
